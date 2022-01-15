@@ -6,6 +6,7 @@ const todoField = document.querySelector('[data-todo=field]');
 const todoButton = document.querySelector('[data-todo=button]');
 const todoList = document.querySelector('[data-todo=list]');
 
+
 //Listeners
 
 document.addEventListener('DOMContentLoaded', refreshScreen)
@@ -15,20 +16,22 @@ todoList.addEventListener('click', todoAction);
 //Functions
 function addItem(e){
     e.preventDefault();
-
-    let item = {
-        content : todoField.value ,
-        status : 'aberto'
-    }
-
-    items.push(item);
-    localStorage.setItem('todos', JSON.stringify(items));
-
-    todoField.value = '';
+    if(todoField.value.length > 1){
+        let item = {
+            content : todoField.value ,
+            status : 'aberto'
+        }
     
-    refreshScreen();
-
-    console.log(items);
+        items.push(item);
+        localStorage.setItem('todos', JSON.stringify(items));
+    
+        todoField.value = '';
+        
+        refreshScreen();
+        Swal.fire('Boa!', 'Tarefa adicionada com sucesso', 'success');
+    }else{
+        Swal.fire('Ops...', 'Informe a tarefa', 'error');
+    }
 
 }
 
