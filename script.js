@@ -1,6 +1,5 @@
 //Variables
 const items = getTodos();
-console.log(items);
 
 //Selectors
 const todoField = document.querySelector('[data-todo=field]');
